@@ -40,21 +40,25 @@ for index in [0...6]
 tap.states = 
 	normal:
 		width: 55
-# 		x: Align.center
 		animationOptions:
 			curve: Bezier.ease
-			time: 0.3
+			time: 0.2
 	live:
+		width: 200		
 		x: Align.center
-		width: Screen.width / 1.7
 		animationOptions:
 			curve: Bezier.ease
-			time: 0.3
+			time: 0.2
 
-		
+tap.stateSwitch("normal")
+
 pageScroller.snapToPage(pageScroller.content.children[1], false)
+
 pageScroller.on "change:currentPage", ->
-    if pageScroller.currentPage is pageScroller.content.children[0]
-     tap.animate("live")
-    else 
-     tap.animate("normal")
+	if pageScroller.currentPage is pageScroller.content.children[0]
+		tap.animate("live")
+		tap_overlay.opacity = 0
+	else
+		tap.animate("normal")
+		tap_overlay.opacity = 1
+		
